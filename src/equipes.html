@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Equipes — PortalCopa26</title>
+  <meta name="description" content="As 48 seleções da Copa do Mundo FIFA 2026 com bandeira, grupo, treinador, ranking FIFA e elenco completo.">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="equipes">
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header id="cabecalho"></header>
+
+  <main id="conteudo">
+    <section class="secao">
+      <div class="container">
+
+        <div class="secao__cabecalho">
+          <div>
+            <span class="rotulo-secao">Seleções</span>
+            <h2>Equipes participantes</h2>
+            <p class="secao__descricao">
+              Selecione uma seleção para ver bandeira, grupo, treinador e o elenco completo.
+            </p>
+          </div>
+        </div>
+
+        <div class="cartao" style="margin-bottom:1.5rem">
+          <div class="cartao__corpo">
+            <div class="filtros filtros--duplo">
+              <div class="campo">
+                <label for="busca-equipe">Buscar seleção</label>
+                <input type="search" id="busca-equipe" placeholder="Ex.: Brasil, Croácia, MEX…" autocomplete="off">
+              </div>
+              <div class="campo">
+                <label for="filtro-grupo-equipe">Grupo</label>
+                <select id="filtro-grupo-equipe"></select>
+              </div>
+            </div>
+          </div>
+          <div class="cartao__rodape" id="contador-equipes"></div>
+        </div>
+
+        <div class="grade grade--cartoes-equipe" id="grade-equipes" style="margin-bottom:2rem"></div>
+
+        <div id="ficha-equipe"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/dados/selecoes.js"></script>
+  <script src="js/dados/estadios.js"></script>
+  <script src="js/dados/jogos.js"></script>
+  <script src="js/dados/ranking.js"></script>
+  <script src="js/dados/jogadores.js"></script>
+  <script src="js/nucleo/util.js"></script>
+  <script src="js/nucleo/classificacao.js"></script>
+  <script src="js/nucleo/componentes.js"></script>
+  <script src="js/nucleo/layout.js"></script>
+  <script src="js/paginas/equipes.js"></script>
+  <script>
+    Copa26.layout.iniciar();
+    Copa26.paginas.equipes.iniciar();
+  </script>
+</body>
+</html>

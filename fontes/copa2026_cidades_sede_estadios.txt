@@ -1,0 +1,20 @@
+##Cidades-Sede e Estádios
+
+| Cidade | País | Estádio | Capacidade |
+|--------|------|---------|-----------|
+| Cidade do México | México | Estádio Azteca | 87.523 |
+| Guadalajara | México | Estadio Akron | 49.850 |
+| Monterrey | México | Estadio BBVA | 53.500 |
+| Nova York/New Jersey | EUA | MetLife Stadium | 82.500 |
+| Los Angeles | EUA | SoFi Stadium | 70.240 |
+| Dallas | EUA | AT&T Stadium | 80.000 |
+| San Francisco | EUA | Levi's Stadium | 68.500 |
+| Seattle | EUA | Lumen Field | 69.000 |
+| Boston | EUA | Gillette Stadium | 65.878 |
+| Miami | EUA | Hard Rock Stadium | 65.326 |
+| Filadélfia | EUA | Lincoln Financial Field | 69.176 |
+| Kansas City | EUA | Arrowhead Stadium | 76.416 |
+| Atlanta | EUA | Mercedes-Benz Stadium | 71.000 |
+| Houston | EUA | NRG Stadium | 72.220 |
+| Toronto | Canadá | BMO Field | 30.000* |
+| Vancouver | Canadá | BC Place | 54.500 |

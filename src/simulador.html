@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador — PortalCopa26</title>
+  <meta name="description" content="Simule os resultados da Copa do Mundo FIFA 2026: informe os placares, recalcule a classificação dos grupos e avance pelo mata-mata até a final.">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="simulador">
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header id="cabecalho"></header>
+
+  <main id="conteudo">
+    <section class="secao">
+      <div class="container">
+
+        <div class="secao__cabecalho">
+          <div>
+            <span class="rotulo-secao">Simulador</span>
+            <h2>Simule a Copa do Mundo 2026</h2>
+            <p class="secao__descricao">
+              Informe os placares e veja pontuação, saldo de gols e classificação se recalcularem
+              na hora. Seus palpites ficam salvos neste navegador.
+            </p>
+          </div>
+        </div>
+
+        <div id="aviso-armazenamento"></div>
+
+        <div class="barra-acoes" id="barra-simulador"></div>
+
+        <div class="abas" id="abas-simulador" role="tablist" aria-label="Etapas da simulação">
+          <button class="aba" type="button" role="tab" data-aba="grupos" aria-selected="true" aria-controls="painel-grupos">Fase de grupos</button>
+          <button class="aba" type="button" role="tab" data-aba="mata-mata" aria-selected="false" aria-controls="painel-mata-mata">Mata-mata</button>
+          <button class="aba" type="button" role="tab" data-aba="boloes" aria-selected="false" aria-controls="painel-boloes">Meus bolões</button>
+        </div>
+
+        <div class="painel" id="painel-grupos" role="tabpanel" data-painel="grupos">
+          <div class="grade grade--2" id="painel-grupos-lista"></div>
+          <div style="margin-top:1.5rem" id="painel-grupos-resumo"></div>
+        </div>
+
+        <div class="painel" id="painel-mata-mata" role="tabpanel" data-painel="mata-mata" hidden>
+          <div id="painel-mata-mata-lista"></div>
+        </div>
+
+        <div class="painel" id="painel-boloes" role="tabpanel" data-painel="boloes" hidden>
+          <div id="painel-boloes-lista"></div>
+        </div>
+
+        <p class="nota-fonte">
+          Empates são permitidos na fase de grupos. No mata-mata, um empate no tempo normal abre o
+          campo de pênaltis (RN-03) e o vencedor avança automaticamente para a fase seguinte.
+        </p>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/dados/selecoes.js"></script>
+  <script src="js/dados/estadios.js"></script>
+  <script src="js/dados/jogos.js"></script>
+  <script src="js/dados/ranking.js"></script>
+  <script src="js/nucleo/util.js"></script>
+  <script src="js/nucleo/classificacao.js"></script>
+  <script src="js/nucleo/armazenamento.js"></script>
+  <script src="js/nucleo/componentes.js"></script>
+  <script src="js/nucleo/layout.js"></script>
+  <script src="js/paginas/simulador.js"></script>
+  <script>
+    Copa26.layout.iniciar();
+    Copa26.paginas.simulador.iniciar();
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jogos — PortalCopa26</title>
+  <meta name="description" content="Todos os 104 jogos da Copa do Mundo FIFA 2026, ordenados por data e agrupados por dia, com filtros por fase, grupo, seleção e cidade-sede.">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="jogos">
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header id="cabecalho"></header>
+
+  <main id="conteudo">
+    <section class="secao">
+      <div class="container">
+
+        <div class="secao__cabecalho">
+          <div>
+            <span class="rotulo-secao">Calendário</span>
+            <h2>Jogos da Copa do Mundo 2026</h2>
+            <p class="secao__descricao">
+              Ordenados por data e agrupados por dia. Horários no fuso de Brasília (UTC−3).
+            </p>
+          </div>
+          <a class="botao botao--secundario botao--pequeno" href="grupos.html">Ver grupos</a>
+        </div>
+
+        <div class="cartao" style="margin-bottom:1.5rem">
+          <div class="cartao__corpo">
+            <div class="chips" id="filtro-fase" role="group" aria-label="Filtrar por fase" style="margin-bottom:1rem"></div>
+            <div class="filtros">
+              <div class="campo">
+                <label for="filtro-grupo">Grupo</label>
+                <select id="filtro-grupo"></select>
+              </div>
+              <div class="campo">
+                <label for="filtro-selecao">Seleção</label>
+                <select id="filtro-selecao"></select>
+              </div>
+              <div class="campo">
+                <label for="filtro-cidade">Sede / cidade</label>
+                <select id="filtro-cidade"></select>
+              </div>
+              <div class="campo">
+                <label for="filtro-data">Data</label>
+                <select id="filtro-data"></select>
+              </div>
+              <div class="campo">
+                <label for="limpar-filtros">&nbsp;</label>
+                <button class="botao botao--fantasma" type="button" id="limpar-filtros">Limpar filtros</button>
+              </div>
+            </div>
+          </div>
+          <div class="cartao__rodape" id="resumo-jogos"></div>
+        </div>
+
+        <div id="lista-jogos"></div>
+        <div id="mais-jogos" style="display:flex;justify-content:center;margin-top:1rem"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/dados/selecoes.js"></script>
+  <script src="js/dados/estadios.js"></script>
+  <script src="js/dados/jogos.js"></script>
+  <script src="js/dados/ranking.js"></script>
+  <script src="js/nucleo/util.js"></script>
+  <script src="js/nucleo/classificacao.js"></script>
+  <script src="js/nucleo/componentes.js"></script>
+  <script src="js/nucleo/layout.js"></script>
+  <script src="js/paginas/jogos.js"></script>
+  <script>
+    Copa26.layout.iniciar();
+    Copa26.paginas.jogos.iniciar();
+  </script>
+</body>
+</html>

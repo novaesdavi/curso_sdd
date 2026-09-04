@@ -1,0 +1,11 @@
+| Fase             | Times | Jogos   | Datas              |
+|------------------|-------|---------|--------------------|
+| Fase de Grupos   | 48    | 72      | 11 jun – 2 jul     |
+| Segunda Fase     | 32    | 16      | 28 jun - 3 jul     |
+| Oitavas de Final | 16    |  8      | 4 jul – 9 jul      |
+| Quartas de Final |  8    |  4      | 11 jul – 13 jul    |
+| Semifinais       |  4    |  2      | 15 jul – 16 jul    |
+| 3º Lugar         |  2    |  1      | 18 jul (Miami)     |
+| Final            |  2    |  1      | 19 jul (Nova York) |
+
+total de 102 jogos

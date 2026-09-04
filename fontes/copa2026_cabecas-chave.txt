@@ -1,0 +1,20 @@
+Cabeças de chave
+Posição	Seleção		Grupo
+------------------------------
+1	México		A
+2	Canadá		B
+3	Brasil		C
+4	Estados Unidos	D
+5	Alemanha	E
+6	Holanda		F
+7	Bélgica		G
+8	Espanha		H
+9	França		I
+10	Argentina	J
+11	Portugal	K
+
+
+
+
+
+

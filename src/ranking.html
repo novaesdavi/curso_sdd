@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ranking FIFA — PortalCopa26</title>
+  <meta name="description" content="Ranking FIFA com posição, seleção e pontuação, destacando as seleções classificadas para a Copa do Mundo 2026.">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="ranking">
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header id="cabecalho"></header>
+
+  <main id="conteudo">
+    <section class="secao">
+      <div class="container">
+
+        <div class="secao__cabecalho">
+          <div>
+            <span class="rotulo-secao">Ranking</span>
+            <h2>Ranking FIFA</h2>
+            <p class="secao__descricao">
+              Posição, seleção e pontuação. As linhas em verde são seleções presentes na Copa 2026.
+            </p>
+          </div>
+        </div>
+
+        <div class="cartao" style="margin-bottom:1.5rem">
+          <div class="cartao__corpo">
+            <div class="filtros filtros--duplo">
+              <div class="campo">
+                <label for="busca-ranking">Buscar seleção</label>
+                <input type="search" id="busca-ranking" placeholder="Ex.: Brasil, Espanha…" autocomplete="off">
+              </div>
+              <div class="campo">
+                <label for="somente-copa">Filtro</label>
+                <label class="alternador" style="padding:.55rem 0">
+                  <input type="checkbox" id="somente-copa"> Mostrar somente seleções da Copa 2026
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="cartao__rodape" id="resumo-ranking"></div>
+        </div>
+
+        <div id="fora-do-ranking" style="margin-bottom:1.5rem"></div>
+
+        <div class="cartao"><div class="cartao__corpo" style="padding:0" id="tabela-ranking"></div></div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/dados/selecoes.js"></script>
+  <script src="js/dados/estadios.js"></script>
+  <script src="js/dados/jogos.js"></script>
+  <script src="js/dados/ranking.js"></script>
+  <script src="js/nucleo/util.js"></script>
+  <script src="js/nucleo/classificacao.js"></script>
+  <script src="js/nucleo/componentes.js"></script>
+  <script src="js/nucleo/layout.js"></script>
+  <script src="js/paginas/ranking.js"></script>
+  <script>
+    Copa26.layout.iniciar();
+    Copa26.paginas.ranking.iniciar();
+  </script>
+</body>
+</html>

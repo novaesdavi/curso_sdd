@@ -1,0 +1,220 @@
+Vamos agora iniciar os ajustes e refinamentos no sistema de vendas
+
+----------------------------------------------------------
+
+1- Corrigir os testes de unidade 
+
+Deve_Cancelar_Pedido_PagamentoConfirmado()  Nao_Deve_Cancelar_Apos_EmSeparacao()
+
+
+A regra atual é : só pode cancelar pedidos em Pendente
+
+
+Teste 1 — Deve_Cancelar_Pedido_PagamentoConfirmado()  
+
+Corrigir o cenário e a expectativa
+
+O teste atual tenta cancelar um pedido em PagamentoConfirmado esperando sucesso. 
+
+Com a regra atual isso deve falhar. Então o teste precisa ser invertido: ou ele testa que PagamentoConfirmado não pode ser cancelado, ou ele testa cancelamento com sucesso usando um pedido Pendente.
+
+Como o nome do teste é Deve_Cancelar_Pedido_PagamentoConfirmado, e isso não é mais verdade, eu reescreveria assim:
+
+1- Valida o caminho feliz : Se Pendente -> Cancelado
+
+[Fact(DisplayName = "Deve cancelar pedido Pendente")]
+public void Deve_Cancelar_Pedido_Pendente()
+{
+    // Arrange
+    var pedido = Pedido.Criar(ClienteIdValido, CriarEnderecoValido());
+    pedido.AdicionarItem(ProdutoIdValido, "Produto", 50m, 1);
+    // Status permanece Pendente — não inicia pagamento
+
+    // Act
+    pedido.CancelarPedido();
+
+    // Assert
+    pedido.StatusPedido.Should().Be(StatusPedido.Cancelado);
+}
+
+2- Valida que PagamentoConfirmado é bloqueado
+
+[Fact(DisplayName = "Não deve permitir cancelar pedido após PagamentoConfirmado")]
+public void Nao_Deve_Cancelar_Pedido_PagamentoConfirmado()
+{
+    // Arrange
+    var pedido = Pedido.Criar(ClienteIdValido, CriarEnderecoValido());
+    pedido.AdicionarItem(ProdutoIdValido, "Produto", 50m, 1);
+    var pagamento = pedido.IniciarPagamento(MetodoPagamento.Pix);
+    pedido.HandlePagamentoAprovado(pagamento.Id); // Status: PagamentoConfirmado
+
+    // Act
+    Action act = () => pedido.CancelarPedido();
+
+    // Assert
+    act.Should().Throw<DomainException>()
+        .WithMessage("Só é possível cancelar pedidos pendentes.");
+}
+
+
+Teste 2 - Nao_Deve_Cancelar_Apos_EmSeparacao()
+
+A lógica do teste (usar [Theory] com vários status) está certa — só a mensagem esperada está desatualizada. E o nome Nao_Deve_Cancelar_Apos_EmSeparacao não faz mais sentido, porque a regra não é "a partir de EmSeparacao", é "qualquer coisa diferente de Pendente".
+
+[Theory(DisplayName = "Não deve permitir cancelar pedido fora do status Pendente")]
+[InlineData(StatusPedido.PagamentoConfirmado)]
+[InlineData(StatusPedido.EmSeparacao)]
+[InlineData(StatusPedido.Enviado)]
+[InlineData(StatusPedido.Entregue)]
+public void Nao_Deve_Cancelar_Quando_Status_Diferente_De_Pendente(StatusPedido status)
+{
+    // Arrange
+    var pedido = Pedido.Criar(ClienteIdValido, CriarEnderecoValido());
+    SetStatusPedido(pedido, status);
+
+    // Act
+    Action act = () => pedido.CancelarPedido();
+
+    // Assert
+    act.Should().Throw<DomainException>()
+        .WithMessage("Só é possível cancelar pedidos pendentes.");
+}
+
+Acrescentei PagamentoConfirmado na lista de InlineData — agora ele cobre todos os status que não são Pendente, em vez de só os que vêm depois de EmSeparacao. Isso também absorve o cenário que estava (incorretamente) no Teste 1.
+
+
+-------------------------------------------------------
+Não existe global.json –  dotnet new globaljson --sdk-version 9.0.310 --roll-forward latestFeature
+
+roll-forward: A diretiva "latestFeature" permite que o .NET utilize uma versão de SDK superior (ex: 9.0.310), caso esteja instalada na máquina, garantindo correções e novos recursos sem quebrar a compatibilidade. 
+
+------------------------------------------------------
+
+Problema 1 — Cliente bloqueado não pode criar pedido
+Onde a regra vive
+
+A regra "cliente bloqueado não pode ter pedido" é uma invariante do agregado Pedido — ele que decide se pode nascer ou não. Mas a informação "está bloqueado" vem de outro Bounded Context (Clientes), então passa pela ACL como bool, igual fizemos no desconto.
+
+
+// Domain/Pedidos/Entities/Pedido.cs
+
+public static Pedido Criar(Guid clienteId, EnderecoEntrega enderecoEntrega, bool clienteEstaBloqueado)
+{
+    Guard.Against<ClienteBloqueadoException>(
+        clienteEstaBloqueado,
+        $"Cliente {clienteId} está bloqueado e não pode criar pedidos.");
+
+    var pedido = new Pedido(clienteId, enderecoEntrega);
+    // ... resto da criação (status inicial, etc.)
+    return pedido;
+}
+
+Por que aqui: o Pedido nunca confia em quem o chama. Se no futuro existir um segundo Handler, um endpoint administrativo, ou um teste chamando Pedido.Criar() direto, a regra continua valendo — porque está dentro do agregado, não em quem o invoca.
+
+Passo 2 — Exceção de domínio (seguindo seu padrão atual)
+
+// Domain/Pedidos/Exceptions/ClienteBloqueadoException.cs
+
+public sealed class ClienteBloqueadoException : DomainException
+{
+    public ClienteBloqueadoException(string mensagem) : base(mensagem) { }
+}
+
+Passo 3 — Application: o Handler busca, traduz, repassa
+csharp// Application/Pedidos/Commands/CriarPedidoCommandHandler.cs
+
+public async Task<Guid> HandleAsync(CriarPedidoCommand command, CancellationToken ct)
+{
+    var clienteDto = await _clientesGateway.ObterClientePorIdAsync(command.ClienteId, ct);
+    if (clienteDto is null)
+        throw new InvalidOperationException("Cliente não encontrado.");
+
+    var clienteEstaBloqueado = clienteDto.Status == "Bloqueado";
+
+    var enderecoDto = await _clientesGateway.ObterEnderecoPorIdAsync(command.EnderecoId, ct);
+    var enderecoEntrega = _clientesAcl.TraduzirEndereco(enderecoDto); // snapshot, como já fazem
+
+    var pedido = Pedido.Criar(command.ClienteId, enderecoEntrega, clienteEstaBloqueado);
+
+    await _pedidoRepository.AdicionarAsync(pedido, ct);
+    await _unitOfWork.CommitAsync(ct);
+
+    return pedido.Id;
+}
+
+o Handler só busca o dado externo e traduz "Bloqueado" (string do outro contexto) para bool (fato do domínio). Ele não decide nada — só entrega o fato pronto para o Pedido decidir.
+
+Pelo que você me contou do Módulo VIII, seu VendasExceptionHandler já trata DomainException no switch. Se ClienteBloqueadoException herdar de DomainException, já cai automaticamente — sem precisar tocar no handler global. Vale confirmar isso ao vivo na aula como reforço do que já foi ensinado.
+
+--------------------------------------------------------
+
+Problema 2 — Total do pedido não reflete o desconto na interface
+
+Causa raiz (recapitulando rápido)
+
+AdicionarItem() calcula Pedido.ValorTotal antes do desconto ser aplicado ao item. O Handler aplica o desconto depois, direto no ItemPedido, sem avisar o Pedido para recalcular.
+
+A correção: o Pedido orquestra o próprio desconto
+
+Passo 1 — Novo método público no agregado Pedido
+
+// Domain/Pedidos/Entities/Pedido.cs
+
+public void AplicarDescontoAoItem(
+    Guid produtoId,
+    IDescontoItemPedidoService descontoService,
+    bool clienteEstaAtivo)
+{
+    var item = _itens.FirstOrDefault(i => i.ProdutoId == produtoId)
+        ?? throw new DomainException("Item não encontrado no pedido.");
+
+    descontoService.AplicarDescontoVolumeSeElegivel(item, clienteEstaAtivo);
+
+    RecalcularValorTotal(); // ← a correção está aqui: recalcula DEPOIS do desconto
+}
+
+Por que aqui: agora é impossível aplicar desconto a um item sem o Pedido saber e recalcular. A operação "aplicar desconto" e "recalcular total" passam a ser atômicas dentro do agregado — ninguém de fora consegue fazer uma sem a outra.
+
+Passo 2 — Handler fica mais simples (e sem acesso direto ao item)
+csharp// Application/Pedidos/Commands/AdicionarItemAoPedidoCommandHandler.cs
+
+public async Task<AdicionarItemAoPedidoResultDto> HandleAsync(
+    AdicionarItemAoPedidoCommand command,
+    CancellationToken cancellationToken = default)
+{
+    var pedido = await _pedidoRepository.ObterPorIdAsync(command.PedidoId, cancellationToken);
+    if (pedido is null)
+        throw new InvalidOperationException("Pedido não encontrado.");
+
+    var produtoDto = await _catalogoGateway.ObterProdutoPorIdAsync(command.ProdutoId, cancellationToken);
+    if (produtoDto is null)
+        throw new InvalidOperationException("Produto não encontrado.");
+
+    var (nomeProduto, precoUnitario) = _catalogoAcl.TraduzirProduto(produtoDto);
+
+    pedido.AdicionarItem(command.ProdutoId, nomeProduto, precoUnitario, command.Quantidade);
+
+    var clienteDto = await _clientesGateway.ObterClientePorIdAsync(pedido.ClienteId, cancellationToken);
+    var clienteEstaAtivo = clienteDto?.Status == "Ativo";
+
+    // Antes: pegava o item "por fora" e mutava direto.
+    // Agora: pede para o Pedido fazer isso, garantindo o recalculo.
+    pedido.AplicarDescontoAoItem(command.ProdutoId, _descontoService, clienteEstaAtivo);
+
+    await _pedidoRepository.AtualizarAsync(pedido, cancellationToken);
+
+    return new AdicionarItemAoPedidoResultDto(pedido.Id, pedido.ValorTotal, pedido.StatusPedido.ToString());
+}
+
+A linha que sai do Handler é esta:
+csharpvar itemAdicionado = pedido.Itens.First(i => i.ProdutoId == command.ProdutoId);
+
+_descontoService.AplicarDescontoVolumeSeElegivel(itemAdicionado, clienteEstaAtivo);
+
+Ela é substituída por uma única chamada ao Pedido, que internamente faz a mesma coisa e recalcula.
+
+O Blazor não precisa de nenhuma mudança
+Esse é o ponto importante para fechar com os alunos: depois dessa correção, tanto _pedidoAtualizado.ValorTotal (banner) quanto itemReal.ValorTotal (tabela) vêm corretos da API, porque o dado que estava errado no banco agora é persistido certo. O Blazor já estava lendo os campos certos — só estava exibindo um valor que nascia errado no domínio.
+
+Vale dizer isso em voz alta na aula: "Vejam que não tocamos em uma linha do Blazor. O bug parecia estar na tela, mas estava na regra de negócio. Isso é exatamente por que sempre vale a pena perguntar 'o dado que está chegando está certo?' antes de sair ajustando a exibição."
+

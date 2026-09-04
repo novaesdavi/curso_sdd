@@ -1,0 +1,19 @@
+### RN-01 — Classificação de Grupos
+Ordem de critérios:
+1. Pontos
+2. Saldo de gols
+3. Gols marcados
+4. Resultado do confronto direto
+5. Saldo de gols nos confrontos diretos
+6. Fair Play (cartões)
+7. Ranking FIFA
+
+### RN-02 — Avanço da Fase de Grupos
+- 1º e 2º de cada grupo avançam automaticamente (24 times)
+- Os 8 melhores entre os 12 terceiros colocados avançam (8 times)
+- Total de 32 times nas oitavas
+
+### RN-03 — Mata-Mata
+- Em caso de empate no tempo normal: prorrogação (2 × 15 min)
+- Se persistir empate: pênaltis
+- Não há gol de ouro/prata

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PortalCopa26 — Copa do Mundo FIFA 2026</title>
+  <meta name="description" content="Portal da Copa do Mundo FIFA 2026: jogos, grupos, classificação, seleções, elencos, ranking FIFA e simulador de resultados.">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="home">
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header id="cabecalho"></header>
+
+  <main id="conteudo">
+
+    <!-- Hero (PRD §5) -->
+    <section class="hero">
+      <div class="container hero__interno">
+        <div>
+          <span class="hero__selo">We Are 26 · 11 jun – 19 jul de 2026</span>
+          <h1 class="hero__titulo">Portal<span>Copa26</span></h1>
+          <p class="hero__subtitulo">
+            Tudo sobre a Copa do Mundo FIFA 2026: os 104 jogos, os 12 grupos, as 48 seleções
+            com seus elencos, o ranking FIFA e um simulador para você montar a sua Copa.
+          </p>
+          <div class="sedes" id="sedes-hero"></div>
+          <div class="grupo-botoes hero__acoes">
+            <a class="botao botao--primario" href="simulador.html">Simular a Copa</a>
+            <a class="botao botao--secundario" href="jogos.html">Ver todos os jogos</a>
+          </div>
+        </div>
+        <div class="hero__painel">
+          <img class="hero__logo-copa" src="https://api.fifa.com/api/v3/picture/tournaments-sq-4/285023"
+               alt="Logo oficial da Copa do Mundo FIFA 2026"
+               onerror="this.style.display='none'">
+          <div id="contagem" style="width:100%"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Números da Copa -->
+    <section class="secao secao--compacta">
+      <div class="container">
+        <div class="estatisticas" id="estatisticas"></div>
+      </div>
+    </section>
+
+    <!-- Acesso rápido -->
+    <section class="secao secao--compacta">
+      <div class="container">
+        <nav class="atalhos" aria-label="Acesso rápido">
+          <a class="atalho" href="jogos.html"><span class="atalho__icone" aria-hidden="true">📅</span>Tabela de jogos<span>104 partidas por dia e fase</span></a>
+          <a class="atalho" href="grupos.html"><span class="atalho__icone" aria-hidden="true">🏆</span>Grupos<span>Classificação dos 12 grupos</span></a>
+          <a class="atalho" href="equipes.html#BRA"><img class="atalho__icone" src="https://api.fifa.com/api/v3/picture/flags-sq-4/BRA" alt="" width="34" height="23" style="border-radius:3px" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'atalho__icone',textContent:'⚽'}))">Brasil<span>Elenco e informações</span></a>
+          <a class="atalho" href="simulador.html"><span class="atalho__icone" aria-hidden="true">🎯</span>Simulador<span>Monte o seu bolão</span></a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Países-sede (PRD §5) -->
+    <section class="secao">
+      <div class="container">
+        <div class="secao__cabecalho">
+          <div>
+            <span class="rotulo-secao">Países-sede</span>
+            <h2>Canadá, Estados Unidos e México</h2>
+            <p class="secao__descricao">A primeira Copa com três países-sede e 16 cidades.</p>
+          </div>
+        </div>
+        <div class="grade grade--3" id="paises-sede"></div>
+      </div>
+    </section>
+
+    <!-- Próximos jogos (PRD §5) -->
+    <section class="secao">
+      <div class="container">
+        <div class="secao__cabecalho">
+          <div>
+            <span class="rotulo-secao">Calendário</span>
+            <h2 id="proximos-jogos-titulo">Próximos jogos</h2>
+            <p class="secao__descricao">Horários no fuso de Brasília (UTC−3).</p>
+          </div>
+          <a class="botao botao--fantasma botao--pequeno" href="jogos.html">Ver tabela completa</a>
+        </div>
+        <div id="proximos-jogos"></div>
+      </div>
+    </section>
+
+    <!-- Ranking FIFA (PRD §5) -->
+    <section class="secao">
+      <div class="container">
+        <div class="secao__cabecalho">
+          <div>
+            <span class="rotulo-secao">Ranking FIFA</span>
+            <h2>As principais seleções</h2>
+            <p class="secao__descricao">Top 10 do ranking, com o grupo de cada seleção na Copa.</p>
+          </div>
+          <a class="botao botao--fantasma botao--pequeno" href="ranking.html">Ranking completo</a>
+        </div>
+        <div class="cartao"><div class="cartao__corpo" style="padding:0" id="ranking-resumo"></div></div>
+      </div>
+    </section>
+
+    <!-- Chamada para o simulador (PRD §5) -->
+    <section class="secao">
+      <div class="container">
+        <div class="chamada-simulador">
+          <div>
+            <span class="rotulo-secao">Simulador</span>
+            <h2>Monte a sua Copa do Mundo</h2>
+            <p>
+              Palpite o placar dos 72 jogos da fase de grupos e veja a classificação se recalcular
+              na hora, com os critérios de desempate da FIFA e a escolha dos 8 melhores terceiros.
+              Depois avance pelo mata-mata até a final — com pênaltis quando der empate.
+            </p>
+          </div>
+          <a class="botao botao--primario" href="simulador.html">Abrir o simulador</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/dados/selecoes.js"></script>
+  <script src="js/dados/estadios.js"></script>
+  <script src="js/dados/jogos.js"></script>
+  <script src="js/dados/ranking.js"></script>
+  <script src="js/nucleo/util.js"></script>
+  <script src="js/nucleo/classificacao.js"></script>
+  <script src="js/nucleo/componentes.js"></script>
+  <script src="js/nucleo/layout.js"></script>
+  <script src="js/paginas/home.js"></script>
+  <script>
+    Copa26.layout.iniciar();
+    Copa26.paginas.home.iniciar();
+  </script>
+</body>
+</html>

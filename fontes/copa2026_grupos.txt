@@ -1,0 +1,145 @@
+Grupo	Cabeça de 
+         Chave		Seleção 2		Seleção 3	Seleção 4
+------------------------------------------------------------------------------
+A	México		África do Sul		Coreia do Sul	República Tcheca
+B	Canadá		Bósnia e Herzegovina	Catar		Suíça
+C	Brasil		Marrocos		Haiti		Escócia
+D	Estados	Unidos	Paraguai		Austrália	Turquia
+E	Alemanha	Curaçao			Costa do Marfim	Equador
+F	Holanda		Japão			Suécia		Tunísia
+G	Bélgica		Egito			Irã		Nova Zelândia
+H	Espanha		Cabo Verde		Arábia Saudita	Uruguai
+I	França		Senegal			Iraque		Noruega
+J	Argentina	Argélia			Áustria		Jordânia
+K	Portugal	RD Congo		Uzbequistão	Colômbia
+L	Inglaterra	Croácia			Gana		Panamá
+
+
+
+## 3. Requisitos Funcionais
+
+### RF-01 — Landing Page
+
+**Descrição:** Página inicial imersiva e atrativa, ponto de entrada para toda a aplicação.
+
+**Funcionalidades:**
+- **Countdown regressivo:** Contagem em tempo real (dias, horas, minutos, segundos) até o primeiro jogo da Copa (11 de junho de 2026, 17h horário de Brasília)
+- **Hero section:** Visual impactante com tema da Copa 2026 ("We Are 26")
+- **Destaques:** Cards com próximos jogos do dia e resultados recentes
+- **Acesso rápido:** Atalhos para Tabela, Grupos, Brasil e Bolão
+- **Stats:** Números da Copa (48 seleções, 16 cidades, 104 jogos)
+- **Responsivo:** Adaptação completa para mobile
+### RF-02 — Tabela de Jogos
+
+**Descrição:** Visualização completa de todas as 104 partidas do torneio.
+
+**Funcionalidades:**
+- Listagem de jogos filtráveis por: fase, grupo, data, seleção, sede/cidade
+- Exibição por data com agrupamento visual
+- Card de jogo com: seleção A vs. seleção B, data, horário (brasília), estádio, cidade, placar
+- Status do jogo: Agendado / Em Andamento / Encerrado
+- Indicação visual de resultado (vitória/empate/derrota)
+- Navegação por semana/fase
+
+**Critérios de Aceite:**
+- Todos os 104 jogos exibidos corretamente
+- Filtros funcionam combinados
+- Placar editável via painel admin (SQLite)
+
+---
+
+### RF-03 — Classificação e Grupos
+
+**Descrição:** Tabela de classificação de cada um dos 12 grupos com todas as informações estatísticas.
+
+**Funcionalidades:**
+- Cards de grupos (A a L) com classificação completa
+- Colunas: Posição, Seleção, P (jogos), V (vitórias), E (empates), D (derrotas), GP (gols pró), GC (gols contra), SG (saldo de gols), Pts (pontos)
+- Indicador visual de classificado (verde) / eliminado (vermelho) / indefinido
+- Badge "Cabeça de Chave" na seleção do Pote 1
+- Bandeiras das seleções
+- Seção de potes com todas as 48 seleções distribuídas nos Potes 1–4
+- Status: classificação atualizada conforme resultados no banco
+
+**Critérios de Aceite:**
+- 12 grupos exibidos corretamente
+- Classificação calculada automaticamente com base nos resultados
+- Regras de desempate FIFA aplicadas (saldo de gols > gols pró > confronto direto)
+
+---
+
+### RF-04 — Elencos das Seleções
+
+**Descrição:** Visualização do elenco de todas as 48 seleções participantes.
+
+**Funcionalidades:**
+- Seleção de equipe via busca ou dropdown por grupo
+- Card da seleção: bandeira, confederação, treinador, ranking FIFA
+- Lista de jogadores com: número, nome, posição, clube, idade
+- Filtro por posição (Goleiros, Zagueiros, Laterais, Meias, Atacantes)
+- Destaque para capitão
+- Seleção Brasileira com elenco detalhado pré-definido
+
+**Critérios de Aceite:**
+- Todas as 48 seleções acessíveis
+- Brasil com elenco completo (23+ jogadores)
+- Busca funcional por nome de seleção
+
+### RF-06 — Bolão e Simulador de Chaveamento
+
+**Descrição:** Simulador completo que permite ao usuário definir placares e visualizar o chaveamento do torneio até a final.
+
+**Funcionalidades:**
+
+**Fase de Grupos:**
+- Interface para palpitar placar de cada jogo dos grupos
+- Cálculo automático de classificação baseado nos palpites
+- Aplicação das regras FIFA de desempate
+- Seleção dos 8 melhores terceiros colocados
+
+**Mata-Mata (Oitavas → Final):**
+- Chaveamento visual interativo 
+- Definição de placar de cada confronto
+- Prorrogação e pênaltis quando empate (toggle)
+- Avanço automático do vencedor para a próxima fase
+- Visualização do caminho até a final
+
+**Gestão de Bolões:**
+- Criar/editar múltiplos bolões salvos
+- Nomear cada bolão (ex: "Meu palpite pessimista")
+- Comparar resultados de diferentes bolões
+- Percentual de acertos vs. resultados reais (quando disponíveis)
+
+**Critérios de Aceite:**
+- Chaveamento responde em menos de 500ms após inserção de placar
+- Todas as fases do torneio navegáveis
+- Dados persistidos no SQLite
+
+## 4. Requisitos Não-Funcionais
+
+### RNF-01 — Performance
+- Primeira renderização em < 3s em conexão 4G
+- Banco SQLite com queries otimizadas (índices em datas, grupos, fases)
+- Paginação em listagens com > 20 itens
+
+### RNF-02 — Responsividade
+- Mobile-first design
+- Breakpoints: 320px, 768px, 1024px, 1440px
+- Funcionalidades de drag & drop com fallback táctil
+
+### RNF-03 — Banco de Dados
+- SQLite (arquivo local, sem Docker, sem servidores externos)
+- Arquivo único: `copa2026.db`
+- Migrations versionadas
+- Seed com todos os dados iniciais (grupos, jogos, elencos)
+
+### RNF-04 — Tecnologias
+- **Backend:** Python (FastAPI) ou Node.js (Express)
+- **Frontend:** React + Tailwind CSS (ou HTML/CSS/JS vanilla para simplicidade)
+- **Banco:** SQLite via `better-sqlite3` (Node) ou `sqlite3` (Python)
+- **Linguagem:** Português (PT-BR) como padrão
+
+### RNF-05 — Acessibilidade
+- Contraste WCAG AA mínimo
+- Alt text em todas as bandeiras/imagens
+- Navegação por teclado nas principais interfaces

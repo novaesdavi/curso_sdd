@@ -1,0 +1,16 @@
+{
+  "name": "portalcopa26",
+  "version": "1.0.0",
+  "description": "Protótipo HTML/CSS/JavaScript do PortalCopa26 — portal da Copa do Mundo FIFA 2026",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dados": "node tools/gerar-dados.mjs",
+    "teste": "node tools/testar.mjs",
+    "servir": "node tools/servir.mjs",
+    "verificar": "node tools/gerar-dados.mjs && node tools/testar.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

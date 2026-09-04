@@ -1,0 +1,65 @@
+Segundafase 3
+Los Angeles   28/06  Domingo  16:00
+África do Sul  x  Canadá
+
+Segundafase 9
+Houston   29/06  Segunda-feira  14:00
+Brasil  x  Japão
+
+Segundafase 1
+Boston   29/06  Segunda-feira  17:30
+Alemanha  x  Paraguai
+
+Segundafase 4
+Monterrey   29/06  Segunda-feira  22:00
+Holanda  x  Marrocos
+
+Segundafase 10
+Dallas   30/06  Terça-feira  14:00
+Costa do Marfim  x  Noruega
+
+Segundafase 2
+Nova York/Nova Jersey   30/06  Terça-feira  18:00
+França  x  Suécia
+
+Segundafase 11
+Cidade do México   30/06  Terça-feira  22:00
+México  x  Equador
+
+Segundafase 12
+Atlanta   01/07  Quarta-feira  13:00
+Inglaterra  x  RD Congo
+
+Segundafase 8
+Seattle   01/07  Quarta-feira  17:00
+Bélgica  x  Senegal
+
+Segundafase 7
+Santa Clara   01/07  Quarta-feira  21:00
+Estados Unidos  x  Bósnia
+
+Segundafase 6
+Los Angeles   02/07  Quinta-feira  16:00
+Espanha  x  Áustria
+
+Segundafase 5
+Toronto   02/07  Quinta-feira  20:00
+Portugal x  Croácia
+
+Segundafase 15
+Vancouver   03/07  Sexta-feira  00:00
+Suíça  x  Argélia
+
+Segundafase 14
+Dallas   03/07  Sexta-feira  15:00
+Austrália  x  Egito
+
+Segundafase 13
+Miami   03/07  Sexta-feira  19:00
+Argentina  x  Cabo Verde
+
+Segundafase 16
+Kansas City   03/07  Sexta-feira  22:30
+Colômbia  x  Gana
+
+

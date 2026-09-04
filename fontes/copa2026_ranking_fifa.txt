@@ -1,0 +1,99 @@
+Posição	Seleção		Pontos
+1	Argentina	1877.72
+2	Espanha		1874.71
+3	França		1870.70
+4	Inglaterra	1828.02
+5	Portugal	1767.85
+6	Brasil		1765.86
+7	Marrocos	1755.10
+8	Holanda		1753.57
+9	Bélgica		1742.24
+10	Alemanha	1735.77
+11	Croácia		1720.07
+12	Itália		1703.37
+13	Uruguai		1702.35
+14	Colômbia	1697.92
+15	México		1685.68
+16	Senegal		1682.54
+17	Estados Unidos	1678.82
+18	Japão		1661.38
+19	Suíça		1652.43
+20	Equador		1635.64
+21	Dinamarca	1626.09
+22	Turquia		1602.95
+23	Irã		1600.01
+24	Canadá		1599.20
+25	Coreia do Sul	1590.69
+26	Nigéria		1589.22
+27	Áustria		1587.22
+28	Austrália	1582.72
+29	Argélia		1571.65
+30	Ucrânia		1564.69
+31	Egito		1560.23
+32	Noruega		1551.81
+33	Panamá		1550.44
+34	Polônia		1539.27
+35	Costa do Marfim	1532.00
+36	Rússia		1526.57
+37	País de Gales	1520.00
+38	Suécia		1515.88
+39	República Tcheca1510.15
+40	Tunísia		1504.92
+41	Hungria		1502.88
+42	Escócia		1497.93
+43	Camarões	1487.86
+44	Paraguai	1485.42
+45	Romênia		1480.20
+46	Eslováquia	1478.71
+47	Grécia		1477.25
+48	Geórgia		1475.13
+49	Irlanda		1474.12
+50	ReD do Congo	1473.00
+51	Bolívia		1436.96
+52	Sérvia		1430.94
+53	Albânia		1425.79
+54	Gabão		1420.64
+55	Catar		1419.02
+56	Burkina Faso	1415.44
+57	Israel		1410.32
+58	EA Unidos	1409.72
+59	Angola		1404.57
+60	Benim		1400.03
+61	Jordânia	1397.90
+62	Zâmbia		1392.33
+63	Haiti		1388.38
+64	Jamaica		1376.29
+65	Guiné		1372.56
+66	Venezuela	1371.62
+67	Iraque		1368.99
+68	Kosovo		1368.59
+69	Finlândia	1355.15
+70	Peru		1352.99
+71	Tadjiquistão	1349.10
+72	Síria		1338.82
+73	Montenegro	1333.11
+74	África do Sul	1332.99
+75	Palau		1329.65
+76	Bahrain		1325.96
+77	Belarus		1324.21
+78	Eslovênia	1323.49
+79	Líbia		1318.33
+80	Uganda		1307.62
+81	Congo		1304.08
+82	Mac. do Norte	1302.52
+83	Chipre		1301.69
+84	Omã		1292.72
+85	Armênia		1290.06
+86	Ilhas Salomão	1284.35
+87	Estônia		1283.83
+88	Letônia		1282.91
+89	Líbano		1278.04
+90	Ilhas Faroe	1277.39
+91	Cazaquistão	1268.75
+92	China		1265.12
+93	Tailândia	1258.32
+94	Burundi		1252.66
+95	Malawi		1247.63
+96	Quênia		1245.95
+97	Vietnã		1241.15
+98	Islândia	1239.57

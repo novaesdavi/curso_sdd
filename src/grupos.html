@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grupos — PortalCopa26</title>
+  <meta name="description" content="Os 12 grupos da Copa do Mundo FIFA 2026 com classificação completa, cabeças de chave e a distribuição das 48 seleções nos potes.">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="grupos">
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header id="cabecalho"></header>
+
+  <main id="conteudo">
+    <section class="secao">
+      <div class="container">
+
+        <div class="secao__cabecalho">
+          <div>
+            <span class="rotulo-secao">Fase de grupos</span>
+            <h2>Grupos e classificação</h2>
+            <p class="secao__descricao">
+              12 grupos de 4 seleções. Avançam o 1º e o 2º de cada grupo, mais os 8 melhores
+              terceiros colocados — 32 times no mata-mata.
+            </p>
+          </div>
+          <a class="botao botao--secundario botao--pequeno" href="jogos.html?fase=grupos">Ver os 72 jogos</a>
+        </div>
+
+        <div class="barra-acoes" id="alternador-palpites"></div>
+
+        <div style="margin-bottom:1.25rem" id="legenda-zonas"></div>
+
+        <div class="grade grade--2" id="lista-grupos"></div>
+
+        <div class="secao__cabecalho" style="margin-top:2.5rem">
+          <div>
+            <span class="rotulo-secao">Regra RN-02</span>
+            <h2>Terceiros colocados</h2>
+            <p class="secao__descricao">
+              Ordenados por pontos, saldo de gols, gols marcados e ranking FIFA.
+            </p>
+          </div>
+        </div>
+        <div class="cartao"><div class="cartao__corpo" style="padding:0" id="terceiros"></div></div>
+
+        <div class="secao__cabecalho" style="margin-top:2.5rem">
+          <div>
+            <span class="rotulo-secao">Sorteio</span>
+            <h2>Potes</h2>
+            <p class="secao__descricao">As 48 seleções distribuídas nos potes 1 a 4.</p>
+          </div>
+        </div>
+        <div class="potes" id="potes"></div>
+
+        <p class="nota-fonte">
+          Critérios de desempate aplicados na ordem da RN-01: pontos, saldo de gols, gols marcados,
+          confronto direto, saldo nos confrontos diretos e ranking FIFA. O critério de Fair Play
+          não é aplicado porque as fontes não trazem dados de cartões.
+        </p>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/dados/selecoes.js"></script>
+  <script src="js/dados/estadios.js"></script>
+  <script src="js/dados/jogos.js"></script>
+  <script src="js/dados/ranking.js"></script>
+  <script src="js/nucleo/util.js"></script>
+  <script src="js/nucleo/classificacao.js"></script>
+  <script src="js/nucleo/armazenamento.js"></script>
+  <script src="js/nucleo/componentes.js"></script>
+  <script src="js/nucleo/layout.js"></script>
+  <script src="js/paginas/grupos.js"></script>
+  <script>
+    Copa26.layout.iniciar();
+    Copa26.paginas.grupos.iniciar();
+  </script>
+</body>
+</html>
