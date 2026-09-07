@@ -1,0 +1,16 @@
+# .NET
+bin/
+obj/
+*.user
+
+# Banco SQLite (nunca commitado — ver CLAUDE.md)
+copa2026.db
+copa2026.db-*
+
+# Node (protótipo e tools/)
+node_modules/
+
+# IDE
+.vs/
+.vscode/
+*.suo

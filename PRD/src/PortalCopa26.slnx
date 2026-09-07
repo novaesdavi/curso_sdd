@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PortalCopa26.Application/PortalCopa26.Application.csproj" />
+    <Project Path="src/PortalCopa26.Domain/PortalCopa26.Domain.csproj" />
+    <Project Path="src/PortalCopa26.Infrastructure/PortalCopa26.Infrastructure.csproj" />
+    <Project Path="src/PortalCopa26.Web/PortalCopa26.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PortalCopa26.Domain.Tests/PortalCopa26.Domain.Tests.csproj" />
+  </Folder>
+</Solution>
