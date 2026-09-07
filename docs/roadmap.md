@@ -7,8 +7,8 @@ uma change própria em `openspec/changes/` quando é implementada.
 
 | # | Feature | PRD | Página de referência no protótipo | Status |
 |---|---|---|---|---|
-| 001 | Setup inicial da solução | — | — (esqueleto .NET + motor de classificação) | Em andamento — documentação concluída (`openspec/changes/bootstrap-solucao-dotnet`, seção 1 do `tasks.md`); esqueleto .NET e motores de domínio ainda pendentes (seções 2–6) |
-| 002 | Tabela de jogos | RF-02 | `jogos.html` | Detalhada (`features/002-jogos.md`) |
+| 001 | Setup inicial da solução | — | — (esqueleto .NET + motor de classificação) | **Concluída** — change arquivada em `openspec/changes/archive/2026-09-07-bootstrap-solucao-dotnet`; specs `classificacao-grupos` e `mata-mata` publicadas em `openspec/specs/` |
+| 002 | Tabela de jogos | RF-02 | `jogos.html` | Detalhada (`features/002-jogos.md`) — planejando a execução |
 | 003 | Classificação e grupos | RF-03 | `grupos.html` | A detalhar |
 | 004 | Elencos das seleções | RF-04 | `equipes.html` | A detalhar |
 | 005 | Ranking FIFA | Não é um RF formal — ver nota abaixo | `ranking.html` | A detalhar |
